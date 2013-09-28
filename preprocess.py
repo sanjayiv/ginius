@@ -17,7 +17,7 @@ def preprocess(record, config):
     newrecord = {}
     features = []
     for feature in config["selectors"]:
-        newrecord[feature] = record[feature]
+        newrecord[feature] = record[feature] or "0"
         features.append(feature)
     for feature, feature_levels in config["mappers"]:
         newrecord[feature] = normalizer(record,feature,feature_levels)
@@ -47,7 +47,6 @@ def preprocesscsv(csvfile,csvoutfile,config,max_records=0):
                 break
     header = dict(zip(fieldnames,fieldnames))
     processed_records.insert(0,header)
-    print fieldnames
     with open(csvoutfile, 'wb') as csvobj:
         writer = csv.DictWriter(csvobj,fieldnames)
         for record in processed_records:
@@ -55,8 +54,6 @@ def preprocesscsv(csvfile,csvoutfile,config,max_records=0):
     return
 
 def main(infile, outfile):
-    print infile
-    print outfile
     preprocesscsv(infile,outfile,preprocess_config,0)
 
 def parse_args():
