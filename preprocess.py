@@ -4,10 +4,13 @@ import optparse
 from preprocessors import *
 
 preprocess_config = { \
-        "selectors": ["default_flag", "UniqueID"],
-        "mappers": [("gender",gender_levels), ("agerange",agerange_levels)],
+        "selectors": ["default_flag", "mentions", "twitterfollowers", "twitterfollowing", "validphone", \
+        "verifiedemailaccount", "verifiedmerchant", "educations", "sum_haspresence", "sum_verified_aaeep", "sum_verifiedall"],
+        "mappers": [("education",education_levels), ("gender",gender_levels), ("agerange",agerange_levels), ("homemarketvalue",homemarketvalue_levels), \
+                ("homeownerstatus",homeownerstatus_levels), ("householdincome",householdincome_levels), ("lengthofresidence",lengthofresidence_levels), \
+                ("maritalstatus",maritalstatus_levels), ("children",children_levels)],
         "normalizers": [("age",normalize_age), ("businessage",normalize_age)],
-        "derivedones": [socially_active, business_age_lie]
+        "derivedones": [business_age_lie]
         }
 
 def preprocess(record, config):
@@ -54,7 +57,7 @@ def preprocesscsv(csvfile,csvoutfile,config,max_records=0):
 def main(infile, outfile):
     print infile
     print outfile
-    preprocesscsv(infile,outfile,preprocess_config,10)
+    preprocesscsv(infile,outfile,preprocess_config,0)
 
 def parse_args():
     parser = optparse.OptionParser()
