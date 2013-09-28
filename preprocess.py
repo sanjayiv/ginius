@@ -5,7 +5,8 @@ from preprocessors import *
 
 preprocess_config = { \
         "selectors": ["default_flag", "mentions", "twitterfollowers", "twitterfollowing", "validphone", \
-        "verifiedemailaccount", "verifiedmerchant", "educations", "sum_haspresence", "sum_verified_aaeep", "sum_verifiedall"],
+        "verifiedemailaccount", "verifiedmerchant", "educations", "sum_haspresence", "sum_verified_aaeep", "sum_verifiedall", \
+        "attributecredibility", "matchcount", "character", "matchquality", "consistency"],
         "mappers": [("education",education_levels), ("gender",gender_levels), ("agerange",agerange_levels), ("homemarketvalue",homemarketvalue_levels), \
                 ("homeownerstatus",homeownerstatus_levels), ("householdincome",householdincome_levels), ("lengthofresidence",lengthofresidence_levels), \
                 ("maritalstatus",maritalstatus_levels), ("children",children_levels)],

@@ -10,9 +10,9 @@ cv.data.y <- as.factor(data[ind==2,1])
 ts.data.x <- data[ind==3,-1]
 ts.data.y <- as.factor(data[ind==3,1])
 print("Checkpoint#1")
-tr.num <- 5000
+tr.num <- 10000
 ntree <- ceiling(ncol(tr.data.x)/2)
-rf <- randomForest(tr.data.x[1:tr.num,], tr.data.y[1:tr.num], ntree=ntree, importance=TRUE, proximity=TRUE)
+rf <- randomForest(tr.data.x[1:tr.num,], tr.data.y[1:tr.num], ntree=ntree, importance=TRUE)
 cv.pred <- predict(rf, cv.data.x)
 ts.pred <- predict(rf, ts.data.x)
 cv.table <- table(observed = cv.data.y, predicted = cv.pred)
