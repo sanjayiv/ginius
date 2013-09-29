@@ -62,4 +62,11 @@ cv.table <- table(observed = cv.data$default_flag, predicted = cv.pred7)
 print(paste("Accuracy: ", sum(cv.pred7==cv.data$default_flag)/nrow(cv.data)))
 print(cv.table)
 
-cv.pred <- (cbind(cv.pred1, cv.pred2, cv.pred3, cv.pred4, cv.pred5, cv.pred6, cv.pred7))
+print("Running with all verified features")
+dt8 <- rpart(default_flag ~ verifiedemailaccount + verifiedmerchant + verifiedaddress + verifiedadult + verifiedadult19 + verifiedage + verifiedemail + verifiedemployer + verifiedfacebook + verifiedlinkedin + verifiedminor + verifiedminor19 + verifiedphone + verifiedschool + verifiedtwitter, data=tr.data, method="class", parms=parms_list)
+cv.pred8 <- predict(dt8, cv.data, type="class")
+cv.table <- table(observed = cv.data$default_flag, predicted = cv.pred8)
+print(paste("Accuracy: ", sum(cv.pred8==cv.data$default_flag)/nrow(cv.data)))
+print(cv.table)
+
+cv.pred <- (cbind(cv.pred1, cv.pred2, cv.pred3, cv.pred4, cv.pred5, cv.pred6, cv.pred7, cv.pred8, cv.data$default_flag))
